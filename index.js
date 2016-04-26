@@ -1,1 +1,3 @@
-export * from './lib/mjpeg-parser';
+'use strict';
+
+module.exports = require('./lib/mjpeg-parser');

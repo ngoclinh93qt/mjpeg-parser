@@ -1,6 +1,6 @@
 {
   "name": "@angelcam/mjpeg-parser",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Parser for multipart MJPEG streams",
   "main": "index.js",
   "engines": {
