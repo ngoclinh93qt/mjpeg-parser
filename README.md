@@ -35,15 +35,22 @@ parser.on('end', function() {
     console.info('stream end');
 });
 
-parser.on('error', function(err) {
-    // handle possible parse errors:
-    console.info('parse error: %s', err.message);
-});
+...
+
+try {
+    // parse given data
+    parser.push(data);
+} catch (e) {
+    // handle possible parse errors
+    console.info('parse error: %s', e.message);
+}
 
 ...
 ```
 
 ## Development
 
+- Before committing and/or publishing run `npm run syntax` and `npm run test`
+  and fix all errors.
 - In order to release a new version, change the package version in 
   `package.json` and run `npm publish`.
