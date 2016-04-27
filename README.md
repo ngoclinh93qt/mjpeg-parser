@@ -45,6 +45,5 @@ parser.on('error', function(err) {
 
 ## Development
 
-- Releasing a new version:
-  - Change the package version in `package.json`.
-  - Run `npm publish`.
+- In order to release a new version, change the package version in 
+  `package.json` and run `npm publish`.
