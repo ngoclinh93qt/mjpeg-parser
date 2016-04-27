@@ -8,7 +8,7 @@
   },
   "scripts": {
     "syntax": "./node_modules/eslint/bin/eslint.js lib index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/angelcam/mjpeg-parser",
   "devDependencies": {
-    "eslint": "^2.8.0"
+    "eslint": "^2.8.0",
+    "jasmine": "^2.4.1"
   }
 }
