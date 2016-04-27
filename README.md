@@ -37,7 +37,7 @@ parser.on('end', function() {
 
 parser.on('error', function(err) {
     // handle possible parse errors:
-    console.inf('parse error: %s', err.message);
+    console.info('parse error: %s', err.message);
 });
 
 ...
@@ -46,5 +46,5 @@ parser.on('error', function(err) {
 ## Development
 
 - Releasing a new version:
-  1. Change the package version in `package.json`.
-  2. Run `npm publish`.
+  - Change the package version in `package.json`.
+  - Run `npm publish`.
