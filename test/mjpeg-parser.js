@@ -43,6 +43,10 @@ describe("MjpegParser", function() {
             + "Content-Type: image/jpeg\r\n"
             + "\r\n"
             + "bbb\r\n"
+            + "--boundary"
+            + "Content-Length: 4\r\n"
+            + "\r\n"
+            + "cccc\r\n"
             + "--boundary--\r\n"
             + "foo";
 
@@ -51,7 +55,7 @@ describe("MjpegParser", function() {
         parser.push(data);
         
         expect(end).toBe(true);
-        expect(frames.length).toBe(2);
+        expect(frames.length).toBe(3);
         expect(frames[0].headers['content-length']).toEqual({ 
             "name"  : "Content-Length",
             "value" : "5",
@@ -67,6 +71,12 @@ describe("MjpegParser", function() {
             "value" : "image/jpeg",
         });
         expect(frames[1].data.toString()).toEqual("bbb");
+        expect(frames[2].headers['content-length']).toEqual({ 
+            "name"  : "Content-Length",
+            "value" : "4",
+        });
+        expect(frames[2].headers['content-type']).toBeUndefined();
+        expect(frames[2].data.toString()).toEqual("cccc");
     });
 
     it("does not parse ivalid header fields", function() {
