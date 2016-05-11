@@ -100,12 +100,14 @@ describe("MjpegParser", function() {
         expect(frames.length).toBe(0);
         expect(end).toBe(false);
     });
-
-    it("does not parse a frame with unknown length", function() {
+    
+    it("does not parse a frame with invalid content type", function() {
         init("boundary", 100);
 
         var data = "foo\r\n"
             + "--boundary\r\n"
+            + "Content-Type: image/png\r\n"
+            + "Content-Length: 5\r\n"
             + "\r\n"
             + "aaaaa\r\n";
 
@@ -120,5 +122,34 @@ describe("MjpegParser", function() {
         expect(frames.length).toBe(0);
         expect(end).toBe(false);
         expect(error).not.toBe(null);
+    });
+
+    it("parses correctly a frame with unknown length", function() {
+        init("boundary", 100);
+
+        var header = "foo\r\n"
+            + "--boundary\r\n"
+            + "\r\n";
+        var body = [0xff, 0xd8, 
+            1, 2, 
+            0xd8, 4, 0xd9, 
+            0xff, 0x00, 
+            0xff, 0xaa, 
+            0xff, 0xd9];
+
+        header = Buffer.from(header);
+        body   = Buffer.from(body);
+        
+        var data = Buffer.concat([header, body]);
+
+        try {
+            parser.push(data);
+        } catch (e) {
+            error = e;
+        }
+
+        expect(frames.length).toBe(1);
+        expect(frames[0].data).not.toBe(null);
+        expect(frames[0].data.length).toBe(body.length);
     });
 });
