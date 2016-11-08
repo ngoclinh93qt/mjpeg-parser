@@ -1,10 +1,10 @@
 {
   "name": "@angelcam/mjpeg-parser",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Parser for multipart MJPEG streams",
   "main": "index.js",
   "engines": {
-    "node": "^5.10.0"
+    "node": ">=5.10.0"
   },
   "scripts": {
     "syntax": "./node_modules/eslint/bin/eslint.js lib index.js",
